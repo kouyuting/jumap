@@ -2,14 +2,14 @@ import * as d3 from "d3";
 export default () => {
     return class BubbleOverlay extends BMap.Overlay { 
         // @data [Array] {lan, lng, value} 分别是经度、纬度、值
-        constructor(data, id) {
+        constructor(data, id, style) {
             super();
             this._data = data;
             this._id = id;
+            this._style = style;
             let parentNode = document.getElementById(id);
             this._height = parentNode.style.height;
             this._width = parentNode.style.width;
-            console.log(parentNode);
         }
         _initContainer() {
             // 创建div元素，作为自定义覆盖物的容器   
@@ -19,8 +19,6 @@ export default () => {
             container.style.width = this._width;
             container.style.top = 0;
             container.style.left = 0;
-            //container.viewBox = [0, 0, 800, 520].join(' ');
-            console.dir(container);
             this._container = container;
             // 将div添加到覆盖物容器中
             this._bmap.getPanes().markerPane.appendChild(container);
@@ -51,18 +49,18 @@ export default () => {
                 .attr('cy', (d)=> d.position.y)
                 .attr('cx', (d)=> d.position.x)
                 .attr('r', (d)=> d.value)
-                .attr('fill', '#4A988A');
+                .attr('fill', this._style.color);
             // 让气泡动起来
             window.setInterval(()=>{
                 d3.select(this._container)
                     .selectAll("circle")
-                    .attr('r', (d)=> d.value)
-                d3.select(this._container)
-                    .selectAll("circle")
                     .transition()
-                    .duration(1000)
-                    .attr('r', (d)=> d.value*0.5)
-                }, 2000);
+                    .duration(500/this._style.speed)
+                    .attr('r', (d)=> d.value*this._style.scale)
+                    .transition()
+                    .duration(500/this._style.speed)
+                    .attr('r', (d)=> d.value)
+                }, 500*2/this._style.speed);
         }
         initialize(map) {  
             this._bmap = map;        
@@ -81,7 +79,6 @@ export default () => {
             });
             let x = Number(this._container.style.left.split('px')[0]);
             let y = Number(this._container.style.top.split('px')[0]);
-            console.log(x);
             d3.select(this._container)
                 .selectAll("circle")
                 .attr('cy', (d)=> d.position.y-y)

@@ -9,6 +9,6 @@ const loadScript = () => {
 window.onload = loadScript; 
 
 window.callback = () => {
-    const jumapEg = kingchart.init('map');
+    const jumapEg = jumap.init('map');
     jumapEg.setOption(option);
 }
