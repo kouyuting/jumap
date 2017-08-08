@@ -1,18 +1,22 @@
 export default {
-	title: {
-        text: '全国主要城市空气质量',
-        color: '#000',
-        fontSize: '12',
-        left: 0,
-        top: 0
-    },
-    subTitle: {
-        text: '全国主要城市空气质量',
-        color: '#000',
-        fontSize: '12',
-        left: 0,
-        top: 0
-    },
+	title: [
+        {
+            type: 'main',
+            text: '全国主要城市空气质量',
+            color: '#fff',
+            fontSize: 14,
+            left: 0,
+            top: 20
+        },
+        {
+            type: 'sub',
+            text: '全国主要城市空气质量',
+            color: '#fff',
+            fontSize: 12,
+            left: 0,
+            top: 40
+        }
+    ],
     bmap: {
         center: [104.114129, 37.550339],
         zoom: 5,

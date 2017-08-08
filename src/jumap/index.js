@@ -1,5 +1,6 @@
 import BubbleOverlay from "./overlay/bubble.js";
 import mapStyle from "../data/mapStyle.js"
+import { Title } from "./title" 
 
 class Jumap {
     constructor(id) {
@@ -54,6 +55,12 @@ class Jumap {
             this._bmap.removeControl(this._ruler);
         }
     }
+    _setTitle() {
+        if(this._option.title && !this._title) {
+            this._title = new Title(this._option.title, this._id);
+        }
+        this._title.draw(this._option.title);
+    }
     setOption(option) {
         this._option = option;
         const bmap = option.bmap;
@@ -72,6 +79,8 @@ class Jumap {
         tile.style.visibility = bmap.visibility? 'visible': 'hidden';
         // 设置行政区
         if(bmap.boundary && bmap.boundary.key) this._setBoundary();
+        // 标题
+        this._setTitle();
         // 设置比例尺
         this._setRuler();
         // 画飞线、气泡等
