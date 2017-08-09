@@ -16991,7 +16991,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
 class Jumap {
     constructor(id) {
         this._id = id;
@@ -17064,7 +17063,7 @@ class Jumap {
         // 鼠标滚动
         if (bmap.roam) this._bmap.enableScrollWheelZoom();
         // 设置底图透明度
-        let tile = document.querySelector('#' + this._id + '>div>div:nth-child(3)');
+        let tile = document.getElementById(this._id).querySelector('div:nth-child(1)>div:nth-child(3)');
         tile.style.opacity = bmap.opacity;
         // 设置底图可见性
         tile.style.visibility = bmap.visibility ? 'visible' : 'hidden';
@@ -17117,15 +17116,16 @@ Jumap.getOverlayConstructor = type => {
             this._id = id;
             this._style = style;
             let parentNode = document.getElementById(id);
-            this._height = parentNode.style.height;
-            this._width = parentNode.style.width;
+            console.dir(parentNode);
+            this._height = parentNode.clientHeight;
+            this._width = parentNode.clientWidth;
         }
         _initContainer() {
             // 创建div元素，作为自定义覆盖物的容器   
             const container = document.createElement("div");
             container.style.position = 'absolute';
-            container.style.height = this._height;
-            container.style.width = this._width;
+            container.style.height = this._height + 'px';
+            container.style.width = this._width + 'px';
             container.style.top = 0;
             container.style.left = 0;
             this._container = container;
@@ -17403,17 +17403,17 @@ class Title {
         this._id = id;
         this._parentNode = document.getElementById(id);
         this._height = this._height = Math.max(data[0].top + data[0].fontSize / 2, data[1].top + data[1].fontSize / 2);
-        this._width = Number(this._parentNode.style.width.split('px')[0]);
+        this._width = Number(this._parentNode.clientWidth);
         this._init();
     }
     _init() {
-        this._svg = __WEBPACK_IMPORTED_MODULE_0_d3__["select"]('#' + this._id).append("svg").style('position', 'absolute').style('top', 0).style('left', 0).style('height', this._height).style('width', '100%');
+        this._svg = __WEBPACK_IMPORTED_MODULE_0_d3__["select"](this._parentNode).append("svg").style('position', 'absolute').style('top', 0).style('left', 0).style('height', this._height).style('width', '100%');
         this._svg.selectAll("text").data(this._data).enter().append("text").attr('text-anchor', 'middle');
     }
     draw(data) {
         this._data = data;
         this._height = Math.max(data[0].top + data[0].fontSize / 2, data[1].top + data[1].fontSize / 2);
-        this._width = Number(this._parentNode.style.width.split('px')[0]);
+        this._width = Number(this._parentNode.clientWidth);
         this._svg.style('height', this._height).selectAll("text").style('color', d => d.color).style('font-size', d => d.fontSize).style('fill', d => d.color).attr('x', d => d.left + this._width / 2).attr('y', d => d.top).text(d => d.text);
     }
 }
