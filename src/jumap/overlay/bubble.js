@@ -8,15 +8,16 @@ export default () => {
             this._id = id;
             this._style = style;
             let parentNode = document.getElementById(id);
-            this._height = parentNode.style.height;
-            this._width = parentNode.style.width;
+            console.dir(parentNode);
+            this._height = parentNode.clientHeight;
+            this._width = parentNode.clientWidth;
         }
         _initContainer() {
             // 创建div元素，作为自定义覆盖物的容器   
             const container = document.createElement("div");
             container.style.position = 'absolute';
-            container.style.height = this._height;
-            container.style.width = this._width;
+            container.style.height = this._height + 'px';
+            container.style.width = this._width + 'px';
             container.style.top = 0;
             container.style.left = 0;
             this._container = container;

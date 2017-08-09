@@ -1,12 +1,13 @@
 {
   "name": "jumap",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config build/webpack.config.js -p",
-    "dev": "webpack-dev-server --inline --hot --config build/webpack.config.js"
+    "build": "webpack --config build/webpack.dev.config.js -p",
+    "dev": "webpack-dev-server --inline --hot --config build/webpack.dev.config.js --content-base ./demo",
+    "pub": "webpack --config build/webpack.pub.config.js -p"
   },
   "author": "kouyuting",
   "license": "ISC",

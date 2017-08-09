@@ -5,11 +5,11 @@ class Title {
         this._id = id;
         this._parentNode = document.getElementById(id);
         this._height = this._height = Math.max(data[0].top+data[0].fontSize/2,data[1].top+data[1].fontSize/2);
-        this._width = Number(this._parentNode.style.width.split('px')[0]);
+        this._width = Number(this._parentNode.clientWidth);
         this._init();
     }
     _init() {
-        this._svg = d3.select('#' + this._id)
+        this._svg = d3.select(this._parentNode)
             .append("svg")
             .style('position', 'absolute')
             .style('top', 0)
@@ -26,7 +26,7 @@ class Title {
     draw(data) {
         this._data = data;
         this._height = Math.max(data[0].top+data[0].fontSize/2,data[1].top+data[1].fontSize/2);
-        this._width = Number(this._parentNode.style.width.split('px')[0]);
+        this._width = Number(this._parentNode.clientWidth);
         this._svg
             .style('height', this._height)
             .selectAll("text")

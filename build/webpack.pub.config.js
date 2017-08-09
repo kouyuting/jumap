@@ -1,15 +1,13 @@
 var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-    entry: resolve("/src/main.js"),
+    entry: resolve("src/jumap/index.js"),
     output: {
-        path: resolve('dist'),
+        path: resolve(''),
         //filename: "app.[hash].js",
-        filename: "app.js",
-        publicPath: "/dist/"
+        filename: "index.js"
     },
     module: {
         rules: [
@@ -19,8 +17,5 @@ module.exports = {
                 include: [resolve('src')]
             }
         ]
-    },
-    plugins: [new HtmlWebpackPlugin({
-        filename: resolve("index.html"),
-    })]
+    }
 }

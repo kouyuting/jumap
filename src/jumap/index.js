@@ -1,7 +1,6 @@
 import BubbleOverlay from "./overlay/bubble.js";
 import mapStyle from "../data/mapStyle.js"
-import { Title } from "./title" 
-
+import { Title } from "./title";
 class Jumap {
     constructor(id) {
         this._id = id;
@@ -73,7 +72,7 @@ class Jumap {
         // 鼠标滚动
         if(bmap.roam) this._bmap.enableScrollWheelZoom();
         // 设置底图透明度
-        let tile = document.querySelector('#' + this._id + '>div>div:nth-child(3)');
+        let tile = document.getElementById(this._id).querySelector('div:nth-child(1)>div:nth-child(3)');
         tile.style.opacity = bmap.opacity;
         // 设置底图可见性
         tile.style.visibility = bmap.visibility? 'visible': 'hidden';
