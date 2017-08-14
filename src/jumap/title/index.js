@@ -33,8 +33,8 @@ class Title {
             .style('color', d=>d.color)
             .style('font-size', d=>d.fontSize)
             .style('fill', d=>d.color)
-            .attr('x', d=>d.left+this._width/2)
-            .attr('y', d=>d.top)
+            .attr('x', d=>Number(d.left)+this._width/2)
+            .attr('y', d=>Number(d.top))
             .text(d=>d.text);
     }
 }

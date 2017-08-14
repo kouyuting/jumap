@@ -3,7 +3,10 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-    entry: resolve("src/jumap/index.js"),
+    entry: [
+        "babel-polyfill",
+        resolve("src/jumap/index.js"),
+    ],
     output: {
         path: resolve(''),
         //filename: "app.[hash].js",
@@ -14,7 +17,10 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: [resolve('src')]
+                include: [resolve('src')],
+                query: {
+                    presets: ['es2015']
+                }
             }
         ]
     }

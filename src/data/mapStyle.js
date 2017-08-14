@@ -224,5 +224,9 @@ export default {
     waterDark,
     waterLight,
     normal: {style:'normal'},
-    googlelite: {style:'googlelite'}
+    googlelite: {style:'googlelite'},
+    dark: {style:'dark'},
+    midnight: {style:'midnight'},
+    grayscale: {style:'grayscale'},
+    hardedge: {style:'hardedge'}
 }

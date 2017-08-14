@@ -1,5 +1,6 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -20,7 +21,12 @@ module.exports = {
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        filename: resolve("demo/index.html"),
-    })]
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: resolve("demo/index.html"),
+        }),
+        new OpenBrowserPlugin({
+          url: 'http://localhost:8080'
+        })
+    ]
 }

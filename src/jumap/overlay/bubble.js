@@ -8,7 +8,6 @@ export default () => {
             this._id = id;
             this._style = style;
             let parentNode = document.getElementById(id);
-            console.dir(parentNode);
             this._height = parentNode.clientHeight;
             this._width = parentNode.clientWidth;
         }
