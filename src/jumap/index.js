@@ -78,7 +78,7 @@ class Jumap {
     // 判断地图主题或位置是否改变，避免不必要的图片渲染
     _ifSet() {
         let bmap = this._option.bmap;
-        let newArray = [bmap.center[0], bmap.center[2], bmap.zoom, bmap.mapStyle];
+        let newArray = [bmap.center[0], bmap.center[1], bmap.zoom, bmap.mapStyle];
         let ifSet = this._oldCache.some((item, index) => {
             if (item === newArray[index]) return false;
             return true;

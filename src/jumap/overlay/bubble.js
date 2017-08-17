@@ -48,19 +48,25 @@ export default () => {
             g.append("circle")
                 .attr('cy', (d)=> d.position.y)
                 .attr('cx', (d)=> d.position.x)
-                .attr('r', (d)=> d.value)
-                .attr('fill', this._style.color);
+                .attr('fill', this._style.color)
+                .append('animate')
+                .attr('attributeName', 'r')
+                .attr('attributeType', 'XML')
+                .attr('from', (d)=> d.value)
+                .attr('to', (d)=> d.value*this._style.scale)
+                .attr('dur', this._style.speed+'s')
+                .attr('repeatCount', "indefinite")
             // 让气泡动起来
-            window.setInterval(()=>{
-                d3.select(this._container)
-                    .selectAll("circle")
-                    .transition()
-                    .duration(500/this._style.speed)
-                    .attr('r', (d)=> d.value*this._style.scale)
-                    .transition()
-                    .duration(500/this._style.speed)
-                    .attr('r', (d)=> d.value)
-                }, 500*2/this._style.speed);
+            // window.setInterval(()=>{
+            //     d3.select(this._container)
+            //         .selectAll("circle")
+            //         .transition()
+            //         .duration(500/this._style.speed)
+            //         .attr('r', (d)=> d.value*this._style.scale)
+            //         .transition()
+            //         .duration(500/this._style.speed)
+            //         .attr('r', (d)=> d.value)
+            //     }, 500*2/this._style.speed);
         }
         initialize(map) {  
             this._bmap = map;        
