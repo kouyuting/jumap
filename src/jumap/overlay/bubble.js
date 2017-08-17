@@ -36,6 +36,7 @@ export default () => {
             this._data.forEach((item) => {
                 item.point = new BMap.Point(item.lat, item.lng);
                 item.position = this._bmap.pointToOverlayPixel(item.point);
+                item.size = Math.min(Math.max(item.value,this._style.minSize),this._style.maxSize);
             });
             let g = d3.select(this._container)
                 .append("svg")
@@ -52,8 +53,8 @@ export default () => {
                 .append('animate')
                 .attr('attributeName', 'r')
                 .attr('attributeType', 'XML')
-                .attr('from', (d)=> d.value)
-                .attr('to', (d)=> d.value*this._style.scale)
+                .attr('from', (d)=> d.size)
+                .attr('to', (d)=> d.size*this._style.scale)
                 .attr('dur', this._style.speed+'s')
                 .attr('repeatCount', "indefinite")
             // 让气泡动起来
