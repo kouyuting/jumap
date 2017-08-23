@@ -1,32 +1,38 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+
 module.exports = {
-    entry: resolve("/src/main.js"),
+    entry: [
+        //"babel-polyfill",
+        resolve("src/main.js")
+    ],
     output: {
-        path: resolve('dist'),
-        //filename: "app.[hash].js",
-        filename: "app.js",
-        publicPath: "/dist/"
+        //path: resolve('dist'),
+        filename: "app.[hash].js",
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: [resolve('src')]
+                include: [resolve('src')],
+                query: {
+                    presets: ['es2015']
+                }
             }
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            filename: resolve("demo/index.html"),
-        }),
-        new OpenBrowserPlugin({
-          url: 'http://localhost:8080'
-        })
-    ]
+      //new CleanWebpackPlugin([resolve('dist')]),
+      new HtmlWebpackPlugin({
+        title: 'jumap demo'
+      }),
+      new webpack.HotModuleReplacementPlugin()
+    ],
 }
