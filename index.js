@@ -1,1 +1,1 @@
-export { default } from "./src/jumap"
+export { default } from "./lib/jumap"
