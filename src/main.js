@@ -1,6 +1,5 @@
 import jumap from "./jumap";
 import option from "./data";
-import "babel-polyfill";
 // 加载百度地图
 const loadScript = () => {
     const script = document.createElement("script");
@@ -17,6 +16,4 @@ window.callback = () => {
 	document.body.appendChild(div);
     const jumapEg = jumap.init('map');
     jumapEg.setOption(option);
-    let se = new Set(1,2,3,4,5,1);
-    console.log(se);
 }
