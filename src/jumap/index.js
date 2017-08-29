@@ -1,5 +1,5 @@
 import BubbleOverlay from "./overlay/bubble.js";
-import mapStyle from "../data/mapStyle.js"
+import mapStyle from "../data/mapStyle.js";
 import { Title } from "./title";
 class Jumap {
     constructor(id) {
